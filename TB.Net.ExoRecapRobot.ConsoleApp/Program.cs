@@ -11,23 +11,25 @@ namespace TB.Net.ExoRecapRobot.ConsoleApp
             {
                 Grid g = new Grid(2, 2);
                 Bot Joueur = g.GeneratePlayer();
-                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
+                Joueur.ChangePosition += delegate (IMovable j) { 
+                    Console.WriteLine($"Joueur position {j.Position_X} - {j.Position_Y} - {j.Direction}"); 
+                };
+                Joueur.ChangePosition += Beep;
                 g.AddAction(Joueur.Forward);
-                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
                 g.AddAction(Joueur.TurnLeft);
-                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
                 g.AddAction(Joueur.Forward);
-                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
                 g.AddAction(Joueur.TurnRight);
-                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
                 g.Play();
-                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
             }
             catch (Exception e)
             {
 
                 Console.WriteLine(e.Message);
             }
+        }
+        static void Beep(IMovable j)
+        {
+            Console.Beep(50, 500);
         }
     }
 }

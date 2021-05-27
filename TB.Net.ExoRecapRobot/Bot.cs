@@ -15,6 +15,7 @@ namespace TB.Net.ExoRecapRobot
         protected Grid Area { get; set; }
 
         public ListAction ListAction { get; set; }
+        public event ChangePositionEventHandler ChangePosition = null;
 
         public Bot(ushort x, ushort y, Orientation direction, Grid area)
         {
@@ -46,6 +47,7 @@ namespace TB.Net.ExoRecapRobot
                     this.Position_X--;
                     break;
             }
+            ChangePosition(this);
         }
 
         public void TurnLeft()
@@ -65,11 +67,13 @@ namespace TB.Net.ExoRecapRobot
                     this.Direction = Orientation.Down;
                     break;
             }
+            ChangePosition(this);
         }
 
         public void TurnRight()
         {
             this.Direction = (Orientation)((((int)this.Direction) + 1)%4);
+            ChangePosition(this);
         }
     }
 }
