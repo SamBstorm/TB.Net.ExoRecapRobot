@@ -9,6 +9,7 @@ namespace TB.Net.ExoRecapRobot
         ushort Position_X { get; }
         ushort Position_Y { get; }
         Orientation Direction { get; }
+        ListAction ListAction { get; set; }
 
         void Forward();
         void TurnLeft();

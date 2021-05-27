@@ -10,19 +10,18 @@ namespace TB.Net.ExoRecapRobot.ConsoleApp
             try
             {
                 Grid g = new Grid(2, 2);
-                g.GeneratePlayer();
-                Console.WriteLine(g.Player.Position_X);
-                Console.WriteLine(g.Player.Position_Y);
-                Console.WriteLine(g.Player.Direction);
-                g.Player.Forward();
-                Console.WriteLine(g.Player.Position_X);
-                Console.WriteLine(g.Player.Position_Y);
-                Console.WriteLine(g.Player.Direction);
-                g.Player.Forward();
-                Console.WriteLine(g.Player.Position_X);
-                Console.WriteLine(g.Player.Position_Y);
-                Console.WriteLine(g.Player.Direction);
-
+                Bot Joueur = g.GeneratePlayer();
+                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
+                g.AddAction(Joueur.Forward);
+                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
+                g.AddAction(Joueur.TurnLeft);
+                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
+                g.AddAction(Joueur.Forward);
+                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
+                g.AddAction(Joueur.TurnRight);
+                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
+                g.Play();
+                Console.WriteLine($"Joueur position {Joueur.Position_X} - {Joueur.Position_Y} - {Joueur.Direction}");
             }
             catch (Exception e)
             {

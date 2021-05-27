@@ -6,7 +6,7 @@ namespace TB.Net.ExoRecapRobot
     {
         public ushort X_MaxValue { get; private set; }
         public ushort Y_MaxValue { get; private set; }
-        public IMovable Player { get; private set; }
+        private IMovable Player { get; set; }
 
         public Grid(ushort Limit_X, ushort Limit_Y)
         {
@@ -14,7 +14,7 @@ namespace TB.Net.ExoRecapRobot
             Y_MaxValue = Limit_Y;
         }
 
-        public void GeneratePlayer()
+        public Bot GeneratePlayer()
         {
             if (!(this.Player is null)) throw new Exception("Already a Player on the Grid");
             this.Player = new Bot(
@@ -23,6 +23,18 @@ namespace TB.Net.ExoRecapRobot
                 Orientation.Up,
                 this
                 );
+            return (Bot)this.Player;
+        }
+
+        public void AddAction(ListAction action)
+        {
+            this.Player.ListAction += action;
+        }
+
+        public void Play()
+        {
+            if (this.Player.ListAction is null) throw new Exception("No action listed");
+            this.Player.ListAction();
         }
     }
 }

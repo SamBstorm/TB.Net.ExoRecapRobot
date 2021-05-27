@@ -14,12 +14,15 @@ namespace TB.Net.ExoRecapRobot
 
         protected Grid Area { get; set; }
 
+        public ListAction ListAction { get; set; }
+
         public Bot(ushort x, ushort y, Orientation direction, Grid area)
         {
             this.Position_X = x;
             this.Position_Y = y;
             this.Direction = direction;
             this.Area = area;
+            this.ListAction = null;
         }
 
         public void Forward()
